@@ -176,3 +176,42 @@ db.comments.insert({username: "ScumbagSteve", comment : "It still isn't clean", 
 //same type of operation as above
 var postId = db.posts.find({ title : { $in : [ "Reports a bug in your code" ]}});
 db.comments.insert({username: "ScumbagSteve", comment : "Denied your PR cause I found a hack", post : postId[0]._id });
+
+//finds all users
+db.users.find();
+
+//finds all posts
+db.posts.find();
+
+//creates index on username in the posts collections to search that field
+db.posts.createIndex({ "username" : "text"});
+//searches for all posts with username : GoodGuyGreg
+db.posts.find({$text :{$search : "GoodGuyGreg"}});
+//could also do:
+ db.posts.find({ username : { $in : [ "GoodGuyGreg" ]}});
+
+//searches for all posts with username : ScumbagSteve
+db.posts.find({$text :{$search : "ScumbagSteve"}});
+//could also do:
+ db.posts.find({ username : { $in : [ "ScumbagSteve" ]}});
+
+//finds all comments
+db.comments.find();
+
+//creates index on username in the comments collection to search that field
+db.comments.createIndex({"username" : "text"});
+//searches for all comments with username "GoodGuyGreg"
+db.comments.find({$text : { $search : "GoodGuyGreg"}});
+//could also
+ db.comments.find({ username : { $in : [ "GoodGuyGreg" ]}});
+
+
+//searches for all comments with username "ScumbagSteve"
+db.comments.find({$text : { $search : "ScumbagSteve"}});
+//could also do
+ db.comments.find({ username : { $in : [ "ScumbagSteve" ]}});
+
+//creates a variable to use to search with
+var postId = db.posts.find({ title : { $in : [ "Reports a bug in your code" ]}});
+//finds comment where post field references the post with the title "Reports a bug in your code"
+db.comments.find({ post : { $in : [ postId[0]._id ]}});
