@@ -104,3 +104,8 @@ db.movies.find({$text: {$search : "dwarves hobbit"}});
 
 db.movies.find({$text: {$search : "gold, dragon"}});
 
+db.movies.remove({title :"Pee Wee Herman's Big Adventure"});
+
+db.movies.remove({title :"Avatar"});
+
+
