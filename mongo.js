@@ -161,6 +161,18 @@ var postId = db.posts.find({ title : { $in : [ "Borrows something" ]}});
 //the find returns an array.  Since only finding one thing, it will be the first position in the array
 db.comments.insert({username: "GoodGuyGreg", comment : "Hope you got a good deal!", post : postId[0]._id });
 
-//same type of operation as above
+//same type of operation as above...don't have to reassign the value of the var postId.  They expire after one use
 var postId = db.posts.find({ title : { $in : [ "Borrows everything" ]}});
 db.comments.insert({username: "GoodGuyGreg", comment : "What's mine is yours!", post : postId[0]._id });
+
+//same type of operation as above
+var postId = db.posts.find({ title : { $in : [ "Forks your repo on github" ]}});
+db.comments.insert({username: "GoodGuyGreg", comment : "Don't violate the licensing agreement", post : postId[0]._id });
+
+//same type of operation as above
+var postId = db.posts.find({ title : { $in : [ "Passes out at party" ]}});
+db.comments.insert({username: "ScumbagSteve", comment : "It still isn't clean", post : postId[0]._id });
+
+//same type of operation as above
+var postId = db.posts.find({ title : { $in : [ "Reports a bug in your code" ]}});
+db.comments.insert({username: "ScumbagSteve", comment : "Denied your PR cause I found a hack", post : postId[0]._id });
