@@ -70,3 +70,32 @@ db.movies.find({ writer : "Quentin Tarantino"});
 
 db.movies.find({ actors : "Brad Pitt" });
 
+db.movies.find({ franchise : "The Hobbit" });
+
+db.movies.find( { year: { $gt: 1989, $lt: 2000 }});
+
+db.movies.find({
+    $or: [
+      {year:
+        {
+          $gt: 2010
+        }
+      },
+      {year :
+        {
+          $lt: 2000
+        }
+      }
+    ]
+});
+
+//db.movies.save({_id: ObjectId("56b40f54ef4630c67af8921e"), title : "The Hobbit: An Unexpected Journey", writer : "J.R.R. Tolkein", year : 2012, franchise : "The Hobbit"});
+db.movies.save({_id : ObjectId("56b40f54ef4630c67af8921e"), synopsis: "A reluctant hobbit, Bilbo Baggins, sets out to the Lonely Mountain with a spirited group of dwarves to reclaim their mountain home - and the gold within it - from the dragon Smaug."});
+
+db.movies.update({_id : ObjectId("56b40f54ef4630c67af8921e") }, {$set : {synopsis : "A reluctant hobbit, Bilbo Baggins, sets out to the Lonely Mountain with a spirited group of dwarves to reclaim their mountain home - and the gold within it - from the dragon Smaug."} });
+
+ db.movies.update({_id : ObjectId("56b40e58ef4630c67af8921c")}, {$push :{actors : "Samuel L. Jackson"} });
+
+
+
+
