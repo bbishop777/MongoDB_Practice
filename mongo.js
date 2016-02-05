@@ -69,3 +69,4 @@ db.movies.find();
 db.movies.find({ writer : "Quentin Tarantino"});
 
 db.movies.find({ actors : "Brad Pitt" });
+
