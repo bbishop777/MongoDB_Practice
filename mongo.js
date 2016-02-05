@@ -101,14 +101,24 @@ db.movies.find({$or: [{year: {$gt: 2010 } }, {year : {$lt: 2000 } } ] });
 //add synopsis to document by matching id
 db.movies.update({_id : ObjectId("56b40f54ef4630c67af8921e") }, {$set : {synopsis : "A reluctant hobbit, Bilbo Baggins, sets out to the Lonely Mountain with a spirited group of dwarves to reclaim their mountain home - and the gold within it - from the dragon Smaug."} });
 
+//add synopsis to document by matching id
+db.movies.update({_id : ObjectId("56b40f91ef4630c67af8921f") }, {$set : {synopsis : "The dwarves, along with Bilbo Baggins and Gandalf the Grey, continue their quest to reclaim Erebor, their homeland, from Smaug. Bilbo Baggins is in possession of a mysterious and magical ring."}});
+
 //add additional actor to document by matching id
 db.movies.update({_id : ObjectId("56b40e58ef4630c67af8921c")}, {$push :{actors : "Samuel L. Jackson"} });
 
 //set index on the synopsis keys in documents (movies)
 db.movies.createIndex({ "synopsis" : "text"});
 
+//find all documents in movies that have
+//"Bilbo" in synopsis using index
+db.movies.find({$text: {$search : "Bilbo"}});
+
 //find all documents in movies that have the "Gandalf" in synopsis using index
 db.movies.find({$text: {$search : "Gandalf"}});
+
+//find all documents in movies with "Bilbo" in the synopsis but not "Gandalf"
+db.movies.find({$text : {$search : "Bilbo -Gandalf"}});
 
 //find all documents in movies with the words "dwarves" or "hobbit" in synopsis using index
 db.movies.find({$text: {$search : "dwarves hobbit"}});
